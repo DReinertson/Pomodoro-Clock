@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<p>Lets show how a clock works</p>
+<p id = 'demo'></p>
+<form>
+  <input type = "number" value = '0' id = 'work'>Worktime
+  </br>
+  <input type = 'number' value = '0' id = 'break'>Breaktime
+</form>
+<button class = 'btn' id = 'timer'>TIMER</button>
+</html>
+
+<script>
+
+//Need to make a function that stops the timer if the button is pressed again or remove the button all together. 
+//Also need to finish the function so when breaktime is finished reset back to normal. Can add a variable equal to true 
+//Timer is still off, may need to round a certain way?
+//Instead of getting current time and time plus amount of minutes, why not just set variable equal to # of minutes in milliseconds and subtract 1000 every second?
+//Instead of having timer function, just put function within the setInterval using workTime first and breakTime second. Won't allow me to use "workTime" and "breakTime" as variables in timer(time). Always starts timer(time) with the original value of workTime or breakTime instead of subtracting it...
+
+//https://www.w3schools.com/jsref/met_win_cleartimeout.asp
+
+var working;
+var breaking;
+var workTime;
+var breakTime;
+var timerFunc;
+
+var originalState = $('#original').clone();
+
+  
+  
+  //Will go into break, now need to figure out how to end the timer if breaktime gets to zero. Also, the timers are skipping some numbers, I'm assuming its because of Math.floor not being used somewhere. 
+$('#timer').click(function(){
+//If this is the first time pressing the button make variable equal true, the timer has started. 
+  console.log('Button pressed');
+  console.log('working:', working);
+  if (working == undefined){
+    working = true;
+    console.log('working:', working)
+  }
+  
+  else if (working == false){
+    working = true;
+    timerFunc = setInterval(function(){
+      
+      workTime = workTime - 1000;
+      
+      if (workTime <= 0){
+        console.log('starting break');
+        clearInterval(timerFunc);
+        timerFunc = setInterval(function(){
+          
+          breakTime -= 1000;
+          
+          minutes = Math.floor((breakTime % (1000*60*60)) / (1000*60));
+          
+          seconds = Math.floor((breakTime % (1000*60)) / 1000);
+          
+          document.getElementById('demo').innerHTML = minutes + ":" + seconds;
+          
+        },1000)
+        return;
+      }
+      
+      var minutes = Math.floor((workTime % (1000*60*60)) / (1000*60));
+    
+    var seconds = Math.floor ((workTime % (1000*60)) / 1000);
+    
+    document.getElementById('demo').innerHTML = minutes + ":" + seconds;      
+      
+    },1000)
+    return;
+  }
+  
+  //If the timer is currently working and button is pressed, will make working variable equal to false and will pause the timer. 
+  //To pause the timer, will use clear interval and store the amount of time left on timer that will be accessed when button is pressed again. 
+  //Currently, stops when timer is pressed again, but will start timer over instead of using remianing time. 
+  else {
+    working = false;
+    console.log("Now pausing")
+    console.log('clearing interval');
+    console.log("worktime:", workTime);
+    console.log('breaktime:', breakTime);
+    clearInterval(timerFunc);
+    //var minutes = Math.floor((workTime % (1000*60*60)) / (1000*60));
+    
+   //var seconds = Math.floor ((workTime % (1000*60)) / 1000);
+    
+    //document.getElementById('demo').innerHTML = minutes + ":" + seconds;
+    return;
+  }
+  
+  var work = document.getElementById('work').value;
+  workTime = Math.floor(work * 60 * 1000);
+  breakTime = Math.floor((document.getElementById('break').value) * 60 * 1000);
+  console.log("workTime:", workTime, "breaktime:", breakTime);
+  timerFunc = setInterval(function() {
+    
+    workTime -= 1000;
+    
+    if (workTime <= 0){
+      console.log('starting breaktime');
+      clearInterval(timerFunc);
+      timerFunc = setInterval(function(){
+        breakTime -= 1000;
+        
+        minutes = Math.floor((breakTime % (1000*60*60)) / (1000*60));
+        
+        seconds = Math.floor ((breakTime % (1000*60)) / 1000);
+        
+        document.getElementById('demo').innerHTML = minutes + ":" + seconds;
+        
+        if (breakTime <= 0){
+     console.log('break is done, resetting'); 
+          clearInterval(timerFunc);
+          $('#original').replaceWith(originalState);
+          return;
+    }
+      }, 1000);
+      return;
+    }
+    
+    var minutes = Math.floor((workTime % (1000*60*60)) / (1000*60));
+    
+    var seconds = Math.floor ((workTime % (1000*60)) / 1000);
+    
+    document.getElementById('demo').innerHTML = minutes + ":" + seconds;
+    
+    
+    
+    
+  }, 1000)
+  
+});
+
+//Need to check timers and see if the negative numbers still come up when coming back from pausing break, and why?
+
+
+
+</script>
