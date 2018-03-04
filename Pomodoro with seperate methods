@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<p>Lets show how a clock works</p>
+<p id = 'demo'></p>
+<form>
+  <input type = "number" value = '0' id = 'work'>Worktime
+  </br>
+  <input type = 'number' value = '0' id = 'break'>Breaktime
+</form>
+<button class = 'btn' id = 'timer'>TIMER</button>
+
+</html>
+
+<script>
+
+var working;
+var breaking;
+var workTime;
+var breakTime;
+var timerFunc;
+
+  
+  
+//When button pressed, retrieve values of each timer and start the timer countdown with workTime until finished, then breakTime.
+
+$('#timer').click(function(){
+  console.log('Button pressed');
+  console.log('working:', working);
+  //Convert minutes into milliseconds. 
+  workTime = (document.getElementById('work').value) * (60 * 1000);
+  breakTime = (document.getElementById('break').value) * (60 * 1000);
+  if (workTime > 0){
+    workTime -= 1000
+  }
+  else {
+    breakTime -= 1000
+  }
+});
+
+</script>
