@@ -25,6 +25,11 @@ $('#timer').click(function(){
     stopTimer();
     return;
   }
+  
+  if (timer == false){
+    timerFunc();
+    return;
+  }
   //Think about using recursion? 
   //function count(){
   //workTime -= 1000
