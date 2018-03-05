@@ -6,47 +6,74 @@
 
 //https://www.w3schools.com/jsref/met_win_cleartimeout.asp
 
-var working;
-var breaking;
+var minutes;
+var seconds;
 var workTime;
 var breakTime;
 var countDown;
-
-var originalState = $('#original').clone();
+var timer;
 
   
   
 //When button pressed, retrieve values of each timer and start the timer countdown with workTime until finished, then breakTime.
 
 $('#timer').click(function(){
-  console.log('Button pressed');
-  console.log('working:', working);
-  //Convert minutes into milliseconds. 
-  workTime = (document.getElementById('work').value) * (60 * 1000);
-  breakTime = (document.getElementById('break').value) * (60 * 1000);
-  if (workTime > 0){
-    workTime -= 1000
+  console.log('Button pressed');  
+  if (timer == true){
+    timer = false;
+    console.log('stopping timer, timer = false');
+    stopTimer();
+    return;
   }
-  else {
-    breakTime -= 1000
-  }
-  
   //Think about using recursion? 
   //function count(){
   //workTime -= 1000
   //countDown = setTimeout(function(){count},1000);
   //execute once with setTimeout, use recursion to call itself?
-}
-  countDown = setInterval(function(){timerFunc}, 1000);
   
+  workTime = (document.getElementById('work').value) * (60 * 1000);
+  breakTime = (document.getElementById('break').value) * (60 * 1000);
+  
+  timerFunc();
 });
 
 function timerFunc(){
-  if (timer == false){
-    timer = true;
-    
+  //Track if timer is currently running or not. 
+  console.log('timerFunc starting');
+  
+  if (!timer){
+    console.log('timer will be true');
+    timer = true;    
   }
+  
+  console.log('workTime:', workTime, 'breakTime:', breakTime);
+  
+  if (workTime > 0){
+    workTime -= 1000;
+    
+    minutes = Math.floor((workTime % (1000*60*60)) / (1000*60));
+    seconds = Math.floor ((workTime % (1000*60)) / 1000);
+    document.getElementById('demo').innerHTML = minutes + ":" + seconds;
+  }
+  
+  else{
+    breakTime -= 1000;
+    minutes = Math.floor((breakTime % (1000*60*60)) / (1000*60));
+    seconds = Math.floor ((breakTime % (1000*60)) / 1000);
+    document.getElementById('demo').innerHTML = minutes + ":" + seconds;
+  }
+  
+  
+  countDown = setTimeout(function(){timerFunc()},1000);
+  
+  
+};
+
+function stopTimer(){
+  clearInterval(countDown);
 }
+
+
 
 //Need to check timers and see if the negative numbers still come up when coming back from pausing break, and why?
 
