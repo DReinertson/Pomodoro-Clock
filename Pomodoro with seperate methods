@@ -1,13 +1,58 @@
 <!DOCTYPE html>
 <html>
-<p>Lets show how a clock works</p>
-<p id = 'demo'></p>
-<form>
-  <input type = "number" value = '0' id = 'work'>Worktime
-  </br>
-  <input type = 'number' value = '0' id = 'break'>Breaktime
-</form>
-<button class = 'btn' id = 'timer'>TIMER</button>
+<head>
+body{
+  background-color: Grey;
+  color: black;
+  text-align: center;
+}
+
+.all{
+  padding: 10%;
+}
+
+.title{
+  padding: 10%;
+}
+
+.workTime, .breakTime{
+  display: inline;
+  padding: 10%;
+}
+
+.timer{
+  padding: 30%;
+}
+
+
+input{
+  width: 30px;
+}
+
+#time{
+  background-color: green;
+}
+</head>
+<div class = 'container-fluid all'>
+  <div class = 'title'>
+    Pomodoro Clock
+  </div>
+  <div id = 'settings'>
+    <div class = 'workTime'>
+      Work
+    <input type = 'number' id = 'work' min = '0' value = '45'>
+    </div>
+    <div class = 'breakTime'>
+      Break
+      <input type = 'number' id = 'break' min = '0' value = '15'>
+    </div>
+  </div>
+  <div class = 'timer'>
+    <button class = 'btn' id = 'start'>Start</button>
+  </div>
+</div>
+<p id = 'time'></p>
+<button class = 'btn' id = 'reset'>Reset</button>
 </html>
 
 
@@ -26,14 +71,27 @@ var timer;
 
   
   
+$('#time').hide();
+$('#reset').hide();
+
 //When button pressed, retrieve values of each timer and start the timer countdown with workTime until finished, then breakTime.
 
-$('#timer').click(function(){
+$('#start').click(function(){
   console.log('Button pressed');  
   
-  $('form').hide();
+  $('.all').hide();
+  $('#time').show();
+  $('#reset').show();
+  
+  $('#reset').click(function(){
+  location.reload();
+})
   //If timer is running and button is pressed, stop the timer and change variable to false (variable that depicts whether timer is running or not) 
-  if (timer == true){
+  
+  
+  
+  $('#time').click(function(){
+    if (timer == true){
     timer = false;
     console.log('stopping timer, timer = false');
     stopTimer();
@@ -44,6 +102,10 @@ $('#timer').click(function(){
     timerFunc();
     return;
   }
+    
+  }).hover(function(){
+    $('#time').css('cursor', 'pointer')});
+  
   //Think about using recursion? 
   //function count(){
   //workTime -= 1000
@@ -77,14 +139,15 @@ function timerFunc(){
     
     minutes = Math.floor((workTime % (1000*60*60)) / (1000*60));
     seconds = Math.floor ((workTime % (1000*60)) / 1000);
-    document.getElementById('demo').innerHTML = minutes + ":" + seconds;
+    document.getElementById('time').innerHTML = minutes + ":" + seconds;
   }
   
   else{
+    $('#time').css("background-color", "red");
     breakTime -= 1000;
     minutes = Math.floor((breakTime % (1000*60*60)) / (1000*60));
     seconds = Math.floor ((breakTime % (1000*60)) / 1000);
-    document.getElementById('demo').innerHTML = minutes + ":" + seconds;
+    document.getElementById('time').innerHTML = minutes + ":" + seconds;
   }
   
   
@@ -96,6 +159,7 @@ function timerFunc(){
 function stopTimer(){
   clearInterval(countDown);
 }
+
 
 
 
