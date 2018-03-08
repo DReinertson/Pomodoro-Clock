@@ -1,62 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-body{
-  background-color: Grey;
-  color: black;
-  text-align: center;
-}
+//CSS
+<style>
+  body{
+    background-color: Grey;
+    color: black;
+    text-align: center;
+  }
 
-.all{
-  padding: 10%;
-}
+  .all{
+    padding: 10%;
+  }
 
-.title{
-  padding: 10%;
-}
+  .title{
+    padding: 10%;
+  }
 
-.workTime, .breakTime{
-  display: inline;
-  padding: 10%;
-}
+  .workTime, .breakTime{
+    display: inline;
+    padding: 10%;
+  }
 
-.timer{
-  padding: 30%;
-}
-
-
-input{
-  width: 30px;
-}
-
-#time{
-  background-color: green;
-}
-</head>
-<div class = 'container-fluid all'>
-  <div class = 'title'>
-    Pomodoro Clock
-  </div>
-  <div id = 'settings'>
-    <div class = 'workTime'>
-      Work
-    <input type = 'number' id = 'work' min = '0' value = '45'>
-    </div>
-    <div class = 'breakTime'>
-      Break
-      <input type = 'number' id = 'break' min = '0' value = '15'>
-    </div>
-  </div>
-  <div class = 'timer'>
-    <button class = 'btn' id = 'start'>Start</button>
-  </div>
-</div>
-<p id = 'time'></p>
-<button class = 'btn' id = 'reset'>Reset</button>
-</html>
+  .timer{
+    padding: 30%;
+  }
 
 
-//Need to make a function that stops the timer if the button is pressed again or remove the button all together. 
+  input{
+    width: 30px;
+  }
+
+  #time{
+    background-color: green;
+  }
+</style>
+//End CSS
+
+//Javascript
+<script type = "text/javascript">
+  //Need to make a function that stops the timer if the button is pressed again or remove the button all together. 
 //Also need to finish the function so when breaktime is finished reset back to normal. Can add a variable equal to true 
 //Timer is still off, may need to round a certain way?
 //Instead of getting current time and time plus amount of minutes, why not just set variable equal to # of minutes in milliseconds and subtract 1000 every second?
@@ -159,6 +142,34 @@ function timerFunc(){
 function stopTimer(){
   clearInterval(countDown);
 }
+</script>
+//End Javascript
+
+</head>
+<div class = 'container-fluid all'>
+  <div class = 'title'>
+    Pomodoro Clock
+  </div>
+  <div id = 'settings'>
+    <div class = 'workTime'>
+      Work
+    <input type = 'number' id = 'work' min = '0' value = '45'>
+    </div>
+    <div class = 'breakTime'>
+      Break
+      <input type = 'number' id = 'break' min = '0' value = '15'>
+    </div>
+  </div>
+  <div class = 'timer'>
+    <button class = 'btn' id = 'start'>Start</button>
+  </div>
+</div>
+<p id = 'time'></p>
+<button class = 'btn' id = 'reset'>Reset</button>
+</html>
+
+
+
 
 
 
