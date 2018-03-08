@@ -3,37 +3,47 @@
 <head>
 //CSS
 <style>
-  body{
-    background-color: Grey;
-    color: black;
-    text-align: center;
-  }
+  /*Need to change the input field, make them circle fields, get rid of the boxes around the number/arrows, and just have arrows. 
+Need to make everything bigger.
+When timer is started, move timer div to center of page and make timer much larger. Could think about adding a dynamically changing countdown that represents how much time is left?*/
 
-  .all{
-    padding: 10%;
-  }
+body{
+  background-color: Grey;
+  color: black;
+  text-align: center;
+}
 
-  .title{
-    padding: 10%;
-  }
+.all{
+  padding: 10%;
+}
 
-  .workTime, .breakTime{
-    display: inline;
-    padding: 10%;
-  }
+.title{
+  padding: 10%;
+  font-size: 500%;
+}
 
-  .timer{
-    padding: 30%;
-  }
+.workTime, .breakTime{
+  display: inline;
+  padding: 10%;
+  font-size: 300%;
+}
+
+.timer{
+  padding: 30%;
+}
 
 
-  input{
-    width: 30px;
-  }
+input{
+  width: 5%;
+}
 
-  #time{
-    background-color: green;
-  }
+#time{
+  margin: 0 auto;
+  background-color: green;
+  font-size: 1000%;
+  width: 60%;
+  text-align: center;
+}
 </style>
 //End CSS
 
