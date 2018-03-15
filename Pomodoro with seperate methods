@@ -49,12 +49,14 @@ body{
   }
 
 #time{
-  margin: 0 auto;
-  background-color: green;
-  font-size: 1000%;
-  width: 60%;
-  text-align: center;
-}
+    margin: 0 auto;
+    background-color: green;
+    font-size: 20vw;
+    width: 70%;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+  }
 </style>
 //End CSS
 
