@@ -82,7 +82,7 @@ $('#reset').hide();
 
 //When button pressed, retrieve values of each timer and start the timer countdown with workTime until finished, then breakTime.
 
-$('#start').click(function(){
+$('#start').on("click touchend", function(){
   console.log('Button pressed');  
   
   $('.all').hide();
@@ -96,7 +96,7 @@ $('#start').click(function(){
   
   
   
-  $('#time').click(function(){
+  $('#time').on("click touchend", function(){
     if (timer == true){
     timer = false;
     console.log('stopping timer, timer = false');
@@ -125,18 +125,13 @@ $('#start').click(function(){
 });
 
 function timerFunc(){
-  //Track if timer is currently running or not. 
-  console.log('timerFunc starting');
+  //Track if timer is currently running or not.
   
   if (!timer){
-    console.log('timer will be true');
     timer = true;    
   }
   
-  console.log('workTime:', workTime, 'breakTime:', breakTime);
-  
   if (breakTime <= 0){
-    console.log("reloading page");
     location.reload();
   }
   
@@ -145,7 +140,7 @@ function timerFunc(){
     
     minutes = Math.floor((workTime % (1000*60*60)) / (1000*60));
     seconds = Math.floor ((workTime % (1000*60)) / 1000);
-    document.getElementById('time').innerHTML = minutes + ":" + seconds;
+    document.getElementById('time').innerHTML = "Work" + "</br>" + minutes + ":" + seconds;
   }
   
   else{
@@ -153,7 +148,7 @@ function timerFunc(){
     breakTime -= 1000;
     minutes = Math.floor((breakTime % (1000*60*60)) / (1000*60));
     seconds = Math.floor ((breakTime % (1000*60)) / 1000);
-    document.getElementById('time').innerHTML = minutes + ":" + seconds;
+    document.getElementById('time').innerHTML = "BREAK" + "</br>" + minutes + ":" + seconds;
   }
   
   
