@@ -8,34 +8,45 @@ Need to make everything bigger.
 When timer is started, move timer div to center of page and make timer much larger. Could think about adding a dynamically changing countdown that represents how much time is left?*/
 
 body{
-  background-color: Grey;
-  color: black;
-  text-align: center;
-}
+    background-color: grey;
+    color: black;
+    text-align: center;
+  }
 
-.all{
-  padding: 10%;
-}
+  .all{
+    padding: 10%;
+  }
 
-.title{
-  padding: 10%;
-  font-size: 500%;
-}
+  .title{
+    padding: 10%;
+    font-size: 10vw;
+  }
 
-.workTime, .breakTime{
-  display: inline;
-  padding: 10%;
-  font-size: 300%;
-}
+  .workTime, .breakTime{
+    display: inline;
+    font-size: 6vw;
+    margin: 0;
+    padding: 0;
+  }
 
-.timer{
-  padding: 30%;
-}
+  .timer{
+    padding: 30%;
+  }
 
 
-input{
-  width: 5%;
-}
+  input{
+    width: 9vw;
+    border: none;
+    background-color: grey;
+    font-size: 5vw;
+    margin: 0 auto;
+    padding: 0;
+  }
+  #settings{
+  background-color: grey;
+  margin: 0 auto;
+  padding: 0;
+  }
 
 #time{
   margin: 0 auto;
