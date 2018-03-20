@@ -3,7 +3,7 @@
 <head>
 //CSS
 <style>
-  /*Need to change the input field, make them circle fields, get rid of the boxes around the number/arrows, and just have arrows. 
+ /*Need to change the input field, make them circle fields, get rid of the boxes around the number/arrows, and just have arrows. 
 Need to make everything bigger.
 When timer is started, move timer div to center of page and make timer much larger. Could think about adding a dynamically changing countdown that represents how much time is left?*/
 
@@ -29,11 +29,18 @@ body{
     padding: 0;
   }
 
+
+
   .timer{
-    padding: 30%;
+    padding: 10vh;
+    background-color: grey;
   }
 
-
+button{
+  width:20vw;
+  height: 10vh;
+  font-size: 5vw;
+}
   input{
     width: 9vw;
     border: none;
@@ -42,13 +49,8 @@ body{
     margin: 0 auto;
     padding: 0;
   }
-  #settings{
-  background-color: grey;
-  margin: 0 auto;
-  padding: 0;
-  }
 
-#time{
+  #time{
     margin: 0 auto;
     background-color: green;
     font-size: 20vw;
@@ -57,17 +59,25 @@ body{
     padding: 0;
     text-align: center;
   }
+  
+  #settings{
+    background-color: grey;
+    margin: 0 auto;
+    padding: 0px;
+  }
+
 </style>
 //End CSS
 
 //Javascript
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type = "text/javascript">
   //Need to make a function that stops the timer if the button is pressed again or remove the button all together. 
 //Also need to finish the function so when breaktime is finished reset back to normal. Can add a variable equal to true 
 //Timer is still off, may need to round a certain way?
 //Instead of getting current time and time plus amount of minutes, why not just set variable equal to # of minutes in milliseconds and subtract 1000 every second?
 //Instead of having timer function, just put function within the setInterval using workTime first and breakTime second. Won't allow me to use "workTime" and "breakTime" as variables in timer(time). Always starts timer(time) with the original value of workTime or breakTime instead of subtracting it...
-
+window.onload = function(){
 var minutes;
 var seconds;
 var workTime;
@@ -133,6 +143,7 @@ function timerFunc(){
   
   if (breakTime <= 0){
     location.reload();
+    return;
   }
   
   if (workTime > 0){
@@ -173,7 +184,7 @@ function timerFunc(){
 function stopTimer(){
   clearInterval(countDown);
 }
-
+}
 </script>
 //End Javascript
 
